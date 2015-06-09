@@ -62,9 +62,9 @@ public class ESInsMateriaRegistrar extends HttpServlet {
             throws ServletException, IOException {
         
         InscripcionMateriaDAO inmDAO = new InscripcionMateriaDAO();
-//        System.out.println(Integer.parseInt(request.getParameter("AlumnoCarrera2")));
-//        inmDAO.inscribirMateria(Integer.parseInt(request.getParameter("AlumnoCarrera2"))
-//                                ,Integer.parseInt(request.getParameter("AlumnoCarrera")));
+        System.out.println(Integer.parseInt(request.getParameter("AlumnoCarrera2")));
+        inmDAO.inscribirMateria(Integer.parseInt(request.getParameter("AlumnoCarrera2"))
+                                ,Integer.parseInt(request.getParameter("AlumnoCarrera")));
         request.getRequestDispatcher("EsAsignaturas.do").forward(request, response);
     }
 

@@ -22,9 +22,10 @@ public class ConexionDbPool {
     private ConexionDbPool(){        
         ds = new PGPoolingDataSource();
         ds.setApplicationName("postgres");
-        ds.setServerName("uckk5dc01d83.cruzlex7.koding.io");
+//      ds.setServerName("uckk5dc01d83.cruzlex7.koding.io");
+        ds.setServerName("localhost");   
         ds.setPortNumber(5432);
-        ds.setUser("postgres");        
+        ds.setUser("postgres"); 
         ds.setPassword("www.pc.com77");
         ds.setDatabaseName("AdministracionAcademica");
         ds.setMaxConnections(50);
