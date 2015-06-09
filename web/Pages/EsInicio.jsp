@@ -168,7 +168,7 @@
                         <ul class="dropdown-menu dropdown-user">
                             <li><a href="#"><i class="fa fa-user fa-fw"></i> <%= (String)(request.getSession().getAttribute("Nombre")) %>  </a>
                             <li class="divider"></li>
-                            <li><a href="../index.jsp"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            <li><a href="index.jsp"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                             </li>
                         </ul>
                         <!-- /.dropdown-user -->
@@ -199,7 +199,7 @@
                                 <a href="EsAsignaturas.do"><i class="fa fa-table fa-fw"></i> Asignaturas</a>
                             </li>
                             <li>
-                                <a href="EsNotas.jsp"><i class="fa fa-edit fa-fw"></i> Examenes</a>
+                                <a href="EsInscripcionMaterias.do"><i class="fa fa-edit fa-fw"></i> Resgistro de materia</a>
                             </li>
                         </ul>
                     </div>

@@ -21,6 +21,7 @@ public class InscripcionMateriaModel {
     private Date fechaEstado;
     private String nombreMateria;
     private String estado;
+    private String nombreCarrera;
 
     public InscripcionMateriaModel(int idInscripcionMateria, int idAlumnoCarrera, int idMateria, int idEstadoMateria, Date fechaInscripcion, Date fechaEstado) {
         this.idInscripcionMateria = idInscripcionMateria;
@@ -31,6 +32,14 @@ public class InscripcionMateriaModel {
         this.fechaEstado = fechaEstado;
     }       
 
+    public String getNombreCarrera() {
+        return nombreCarrera;
+    }
+
+    public void setNombreCarrera(String nombreCarrera) {
+        this.nombreCarrera = nombreCarrera;
+    }
+    
     public String getEstado() {
         return estado;
     }

@@ -4,9 +4,29 @@
         <servlet-name>EsInicio</servlet-name>
         <servlet-class>co.umb.ColombianUniversity.Controller.EsInicio</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>InscribirMaterias</servlet-name>
+        <servlet-class>co.umb.ColombianUniversity.Controller.EsInscripcionMaterias</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EsInscripcionMaterias</servlet-name>
+        <servlet-class>co.umb.ColombianUniversity.Controller.EsInscripcionMaterias</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ESInsMateriaRegistrar</servlet-name>
+        <servlet-class>co.umb.ColombianUniversity.Controller.ESInsMateriaRegistrar</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>EsInicio</servlet-name>
         <url-pattern>/EsInicio.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EsInscripcionMaterias</servlet-name>
+        <url-pattern>/EsInscripcionMaterias.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ESInsMateriaRegistrar</servlet-name>
+        <url-pattern>/ESInsMateriaRegistrar</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

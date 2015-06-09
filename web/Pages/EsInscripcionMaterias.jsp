@@ -1,17 +1,21 @@
+<%-- 
+    Document   : EsInscripcionMaterias
+    Created on : 07-jun-2015, 13:52:05
+    Author     : Alexander
+--%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
-
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Asignaturas</title>
-
+        <title>Inscripcion de materias</title>
 
 
         <!-- Bootstrap Core CSS -->
@@ -172,7 +176,7 @@
                         <ul class="dropdown-menu dropdown-user">
                             <li><a href="#"><i class="fa fa-user fa-fw"></i> <%= (String) (request.getSession().getAttribute("Nombre"))%></a>
                             <li class="divider"></li>
-                            <li><a href="index.jsp"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            <li><a href="../index.jsp"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                             </li>
                         </ul>
                         <!-- /.dropdown-user -->
@@ -204,7 +208,7 @@
                             </li>
                             <li>
                                 <a href="EsInscripcionMaterias.do"><i class="fa fa-edit fa-fw"></i> Resgistro de materia</a>
-                            </li>                          
+                            </li>                         
                         </ul>
                     </div>
                     <!-- /.sidebar-collapse -->
@@ -217,7 +221,7 @@
                     <div class="col-lg-12">
                         <h1 class="page-header"> 
                             <img src="Media/Imagenes/mit.gif" alt="MIT" width="70" height="70"/>
-                            Asignaturas del estudiante <small>${sessionScope.Nombre}</small>
+                            Asignaturas a registrar
                         </h1>
                     </div>
                     <!-- /.col-lg-12 -->
@@ -227,120 +231,49 @@
                     <div class="col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3> Asignaturas inscritas </h3>
+                                <h3> Formulario de incripción de materias </h3>
                             </div>
                             <div class="panel-body">
                                 <div class="dataTables_wrapper">
                                     <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                                         <div class="row" style="color:#000">
                                             <div class="col-sm-6">
-                                                <div class="dataTables_length" id="dataTables-example_length">
-                                                    <label>Show <select name="dataTables-example_length" aria-controls="dataTables-example" class="form-control input-sm">
-                                                            <option value="10">10</option>
-                                                            <option value="25">25</option>
-                                                            <option value="50">50</option>
-                                                            <option value="100">100</option>
-                                                        </select> entries
-                                                    </label>
-                                                </div>
+                                                <form role="form" method="post" action="ESInsMateriaRegistrar">
+                                                    <fieldset>
+                                                        <div class="form-group">
+                                                            <input type="hidden" name="hMaterias" value="<%= request.getAttribute("materiasCarrera")%>">
+                                                            <h4>Carrera</h4>
+                                                            <select name="Carrera" class="form-control" style="color:#000">                                                                
+                                                                <c:forEach var="item" items="${requestScope.carreras}">
+                                                                    <option value="${item.getIdCarrera()}">${item.getCarrera()}</option>
+                                                                </c:forEach>
+                                                            </select>                                                             
+                                                        </div> 
+                                                        <div class="form-group">
+                                                            <h4>Materia</h4>
+                                                            <select name="AlumnoCarrera" class="form-control" style="color:#000" >
+                                                            </select>
+                                                        </div>
+                                                        <br>
+                                                        <div class="form-group">
+                                                            <input type="hidden" name="hMaterias" value="<%= request.getAttribute("materiasCarrera")%>">
+                                                            <h4>Alumno carrera</h4>
+                                                            <select name="AlumnoCarrera2" class="form-control" disabled="true">                                                                
+                                                                <c:forEach var="item" items="${requestScope.carreras}">
+                                                                    <option value=${item.getIdAlumnoCarrera()}>${item.getIdAlumnoCarrera()}</option>
+                                                                </c:forEach>
+                                                            </select>                                                             
+                                                        </div>
+                                                        <br>
+                                                        <br>
+                                                        <button type="submit" class="btn btn-primary btn-lg btn-block" onclick="enable()">Registrar</button>                                                           
+                                                    </fieldset>                                                    
+                                                </form>
                                             </div>
                                             <div class="col-sm-6">
-                                                <div id="dataTables-example_filter" class="dataTables_filter">
-                                                    <label>Search:
-                                                        <input type="search" class="form-control input-sm" placeholder="" aria-controls="dataTables-example">
-                                                    </label>
-                                                </div>
+                                                <img src="Media/Imagenes/lapizPapel.jpg" alt="" height="250" width="300"/>
                                             </div>
-                                        </div>
-                                        <div class="row" style="color:#000">
-                                            <div class="col-sm-12">
-                                                <table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info">
-                                                    <thead>
-                                                        <tr role="row">
-                                                            <th class="sorting_desc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" style="width: 172px;" aria-sort="descending">
-                                                                Carrera
-                                                            </th>
-                                                            <th class="sorting_desc" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column ascending" style="width: 172px;" aria-sort="descending">
-                                                                Materia
-                                                            </th>
-                                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 204px;">
-                                                                Fecha inscripcion
-                                                            </th>
-                                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 185px;">
-                                                                Estado
-                                                            </th>
-                                                          <!--  <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 149px;">
-                                                                Examen
-                                                            </th>
-                                                            <th class="sorting" tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 110px;">
-                                                                Estado Examen
-                                                            </th>-->
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>                                                               
-                                                        <c:forEach var="item" items="${requestScope.asignaturas}">
-                                                            <tr class="gradeA odd" role="row" style="color: black">                                                                
-                                                                <td>
-                                                                    ${item.getNombreCarrera()}
-                                                                </td>
-                                                                <td class="sorting_1" >
-                                                                    ${item.getNombreMateria()}
-                                                                </td> 
-                                                                <td>
-                                                                    ${item.getFechaInscripcion()}
-                                                                </td>
-                                                                <td>
-                                                                    ${item.getEstado()}
-                                                                </td>
-                                                               <!-- <td class="center">
-                                                                  
-                                                                </td>
-                                                                <td class="center">
-                                                                    <a href="#"> Editar </a>
-                                                                </td>-->
-                                                            </tr> 
-                                                        </c:forEach>  
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite">
-                                                    Showing 1 to 10 of 57 entries
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate">
-                                                    <ul class="pagination">
-                                                        <li class="paginate_button previous disabled" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_previous">
-                                                            <a href="#">Previous</a>
-                                                        </li>
-                                                        <li class="paginate_button active" aria-controls="dataTables-example" tabindex="0">
-                                                            <a href="#">1</a>
-                                                        </li>
-                                                        <li class="paginate_button " aria-controls="dataTables-example" tabindex="0">
-                                                            <a href="#">2</a>
-                                                        </li>
-                                                        <li class="paginate_button " aria-controls="dataTables-example" tabindex="0">
-                                                            <a href="#">3</a>
-                                                        </li>
-                                                        <li class="paginate_button " aria-controls="dataTables-example" tabindex="0">
-                                                            <a href="#">4</a>
-                                                        </li>
-                                                        <li class="paginate_button " aria-controls="dataTables-example" tabindex="0">
-                                                            <a href="#">5</a>
-                                                        </li>
-                                                        <li class="paginate_button " aria-controls="dataTables-example" tabindex="0">
-                                                            <a href="#">6</a>
-                                                        </li>
-                                                        <li class="paginate_button next" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_next">
-                                                            <a href="#">Next</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        </div> 
                                     </div>
                                 </div>                                
                             </div> 
@@ -372,6 +305,32 @@
         <!-- Custom Theme JavaScript -->
         <script src="dist/js/sb-admin-2.js"></script>
 
+
+        <script type="text/javascript">
+
+            $('[name = "Carrera"]').change(function cargarMaterias() {
+                $('[name = "AlumnoCarrera"]').find('option').remove();
+                var selected = $('[name = "Carrera"]').val();
+                var todas = $('[name = "hMaterias"]').val();
+                var separadas = todas.split(';');
+                for (i = 0; i < separadas.length; i++) {
+                    var datos = separadas[i].split(',');
+
+                    if (datos[0] === selected) {
+                        var cadena = "<option value='" + datos[1] + "'>" + datos[2] + "</option>";
+                        $('[name = "AlumnoCarrera"]').append(cadena);
+                    }
+                }
+                var index = $('[name = "Carrera"] option:selected').index();
+                $('[name = "AlumnoCarrera2"] option:eq(' + index + ')').prop("selected", true);
+
+            }).change();
+            
+            function enable(){ 
+                $('[name="AlumnoCarrera2"]').prop('disabled',false);
+            }
+
+        </script>
     </body>
 
 </html>

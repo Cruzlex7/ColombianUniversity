@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -48,6 +49,37 @@ public class InscripcionMateriaDAO {
         return list;
     }
         
+    public void inscribirMateria(int idAlumnoCarrera,int idMateria){
     
+        conx = ConexionDbPool.obtenerConexion();
+        
+        try {
+            Calendar fecha = Calendar.getInstance();
+                int anio = fecha.get(Calendar.YEAR);
+                int mes = fecha.get(Calendar.MONTH);
+                mes = mes + 1;
+                int dia = fecha.get(Calendar.DAY_OF_MONTH);               
+                String mesString = mes + "";
+                String diaString = dia + "";
+                if ((mes + "").length() == 1) {
+                    mesString = "0" + mes;
+                }
+                if ((dia + "").length() == 1) {
+                    diaString = "0" + dia;
+                }
+            String sql2="insert into t_inscripcion_materia (im_id_alumno_carrera"
+                    + ",im_id_materia,im_id_estado_materia,im_fecha_inscripcion,"
+                    + "im_fecha_estado) values ("+idAlumnoCarrera+","+idMateria+",3,'"+ anio + "-" + mesString + "-" + diaString +""
+                    + "','"+ anio + "-" + mesString + "-" + diaString +"')";
+            PreparedStatement sta2 = conx.prepareStatement(sql2);
+            sta2.executeUpdate();
+            
+             conx.close();
+             
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
     
 }
