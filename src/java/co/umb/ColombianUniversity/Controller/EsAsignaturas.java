@@ -46,6 +46,7 @@ public class EsAsignaturas extends HttpServlet {
             al = (AlumnoModel) request.getSession().getAttribute("Alumno");
         }
         if (al != null) {
+
             AlumnoCarreraDAO ac = new AlumnoCarreraDAO();
             LinkedList<AlumnoCarreraModel> listcarreras = ac.buscarAlumnoCarrera(al.getId());
 
@@ -53,7 +54,13 @@ public class EsAsignaturas extends HttpServlet {
             LinkedList<InscripcionMateriaModel> lisInscripcion = new LinkedList<InscripcionMateriaModel>();
 
             for (AlumnoCarreraModel listca : listcarreras) {
-                LinkedList<InscripcionMateriaModel> l = ins.buscarInscripcionMateria(listca.getIdAlumnoCarrera());
+                LinkedList<InscripcionMateriaModel> l = null;
+                if (request.getMethod().equals("POST") && request.getParameter("btnBuscar") != null && request.getParameter("btnBuscar").equals("buscar")) {
+                    l = ins.buscarInscripcionMateria(listca.getIdAlumnoCarrera(), request.getParameter("search"));
+                    request.setAttribute("parametro", request.getParameter("search"));
+                } else {
+                    l = ins.buscarInscripcionMateria(listca.getIdAlumnoCarrera());
+                }
                 for (InscripcionMateriaModel l1 : l) {
                     l1.setNombreCarrera(listca.getCarrera());
                 }
@@ -67,7 +74,6 @@ public class EsAsignaturas extends HttpServlet {
                 item.setNombreMateria((m.buscarMateria(item.getIdMateria())).getNombre());
                 item.setEstado(esDAO.buscarEstadoMateria(item.getIdEstadoMateria()));
             }
-
             request.setAttribute("asignaturas", lisInscripcion);
             request.getRequestDispatcher("/Pages/EsAsignaturas.jsp").forward(request, response);
         } else {
@@ -101,7 +107,7 @@ public class EsAsignaturas extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);        
+        processRequest(request, response);
     }
 
     /**

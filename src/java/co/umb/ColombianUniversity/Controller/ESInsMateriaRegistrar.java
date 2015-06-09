@@ -6,6 +6,7 @@
 package co.umb.ColombianUniversity.Controller;
 
 import co.umb.ColombianUniversity.DAO.InscripcionMateriaDAO;
+import co.umb.ColombianUniversity.Model.AlumnoModel;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -30,8 +31,7 @@ public class ESInsMateriaRegistrar extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -46,7 +46,7 @@ public class ESInsMateriaRegistrar extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+
     }
 
     /**
@@ -60,12 +60,21 @@ public class ESInsMateriaRegistrar extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         InscripcionMateriaDAO inmDAO = new InscripcionMateriaDAO();
-        System.out.println(Integer.parseInt(request.getParameter("AlumnoCarrera2")));
-        inmDAO.inscribirMateria(Integer.parseInt(request.getParameter("AlumnoCarrera2"))
-                                ,Integer.parseInt(request.getParameter("AlumnoCarrera")));
-        request.getRequestDispatcher("EsAsignaturas.do").forward(request, response);
+
+        AlumnoModel al = (AlumnoModel) (request.getSession().getAttribute("Alumno"));
+
+        if (inmDAO.validarInscripcionMateria(al, Integer.parseInt(request.getParameter("AlumnoCarrera")))) 
+        {
+            inmDAO.inscribirMateria(Integer.parseInt(request.getParameter("AlumnoCarrera2")), Integer.parseInt(request.getParameter("AlumnoCarrera")));
+            request.setAttribute("registro", "Registro de materia exitoso");
+            request.getRequestDispatcher("EsAsignaturas.do").forward(request, response);
+            
+        } else {
+            request.setAttribute("registro", "La materia que seleccionó ya se encuentra registrada");
+            request.getRequestDispatcher("EsInscripcionMaterias.do").forward(request, response);
+        }
     }
 
     /**

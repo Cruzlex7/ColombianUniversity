@@ -247,7 +247,16 @@
                                             <div class="col-sm-6">
                                                 <div id="dataTables-example_filter" class="dataTables_filter">
                                                     <label>Search:
-                                                        <input type="search" class="form-control input-sm" placeholder="" aria-controls="dataTables-example">
+                                                        <form action="EsAsignaturas.do" method="Post" >
+                                                            <fielset>
+                                                                 <input type="search" class="form-control input-sm"
+                                                                        name="search" placeholder="Nombre materia" 
+                                                                        aria-controls="dataTables-example"
+                                                                        title="Escriba el nombre de la materia o parte de él para realizar la busqueda"
+                                                                        value="<%=request.getAttribute("parametro") != null ? request.getAttribute("parametro") : "" %>">
+                                                                 <input type="submit" class="form-control"  name="btnBuscar" value="buscar" title="Realizar filtro">
+                                                            </fielset>
+                                                        </form>                                                       
                                                     </label>
                                                 </div>
                                             </div>

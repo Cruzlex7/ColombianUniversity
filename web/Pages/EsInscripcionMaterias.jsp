@@ -238,6 +238,11 @@
                                     <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                                         <div class="row" style="color:#000">
                                             <div class="col-sm-6">
+                                                <h4 name="registro" style="color:#ff0033">
+                                                    <i class="fa fa-link"></i>
+                                                    <%= request.getAttribute("registro") != null ? request.getAttribute("registro") : ""%> 
+                                                    
+                                                </h4>                                                
                                                 <form role="form" method="post" action="ESInsMateriaRegistrar">
                                                     <fieldset>
                                                         <div class="form-group">
@@ -308,27 +313,31 @@
 
         <script type="text/javascript">
 
-            $('[name = "Carrera"]').change(function cargarMaterias() {
-                $('[name = "AlumnoCarrera"]').find('option').remove();
-                var selected = $('[name = "Carrera"]').val();
-                var todas = $('[name = "hMaterias"]').val();
-                var separadas = todas.split(';');
-                for (i = 0; i < separadas.length; i++) {
-                    var datos = separadas[i].split(',');
+                                                            $('[name = "Carrera"]').change(function cargarMaterias() {
+                                                                $('[name = "AlumnoCarrera"]').find('option').remove();
+                                                                var selected = $('[name = "Carrera"]').val();
+                                                                var todas = $('[name = "hMaterias"]').val();
+                                                                var separadas = todas.split(';');
+                                                                for (i = 0; i < separadas.length; i++) {
+                                                                    var datos = separadas[i].split(',');
 
-                    if (datos[0] === selected) {
-                        var cadena = "<option value='" + datos[1] + "'>" + datos[2] + "</option>";
-                        $('[name = "AlumnoCarrera"]').append(cadena);
-                    }
-                }
-                var index = $('[name = "Carrera"] option:selected').index();
-                $('[name = "AlumnoCarrera2"] option:eq(' + index + ')').prop("selected", true);
+                                                                    if (datos[0] === selected) {
+                                                                        var cadena = "<option value='" + datos[1] + "'>" + datos[2] + "</option>";
+                                                                        $('[name = "AlumnoCarrera"]').append(cadena);
+                                                                    }
+                                                                }
+                                                                var index = $('[name = "Carrera"] option:selected').index();
+                                                                $('[name = "AlumnoCarrera2"] option:eq(' + index + ')').prop("selected", true);
 
-            }).change();
-            
-            function enable(){ 
-                $('[name="AlumnoCarrera2"]').prop('disabled',false);
-            }
+                                                            }).change();
+
+                                                            function enable() {
+                                                                $('[name="AlumnoCarrera2"]').prop('disabled', false);
+                                                            }
+
+                                                            setTimeout(function () {
+                                                                $("[name='registro']").fadeOut(1500);
+                                                            }, 2000);
 
         </script>
     </body>
