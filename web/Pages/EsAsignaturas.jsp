@@ -36,7 +36,6 @@
     </head>
 
     <body>
-
         <div id="wrapper">
 
             <!-- Navigation -->
@@ -170,9 +169,9 @@
                             <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-user">
-                            <li><a href="#"><i class="fa fa-user fa-fw"></i> <%= (String) (request.getSession().getAttribute("Nombre"))%></a>
+                            <li><a href="#"><i class="fa fa-user fa-fw"></i> <%= (String)(request.getSession().getAttribute("Nombre")) %>  </a>
                             <li class="divider"></li>
-                            <li><a href="index.jsp"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            <li><a href="Pages/index.jsp"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                             </li>
                         </ul>
                         <!-- /.dropdown-user -->
@@ -358,6 +357,7 @@
                     <!-- /.col-lg-12 -->                    
                 </div>
                 <!-- /.row -->
+                
             </div>
             <!-- /#page-wrapper -->
 

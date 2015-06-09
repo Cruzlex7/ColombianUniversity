@@ -154,4 +154,26 @@ public class CarreraDAO {
         }
         return result;
     }
+    
+    public void buscarCarrerasMaterias(){
+               
+        try {
+            conx = ConexionDbPool.obtenerConexion();
+            String query = "select c_id_carrera, mat_id_materia, mat_nombre_materia from t_carrera";
+                    
+                    
+            PreparedStatement pre = conx.prepareStatement(query);
+            ResultSet res = pre.executeQuery();
+
+            while (res.next()) {
+                
+            }
+            conx.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(CarreraDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+    
+    }
 }

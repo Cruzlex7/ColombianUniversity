@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : 01-jun-2015, 15:36:46
+    Document   : GeneralIninio
+    Created on : 09-jun-2015, 13:30:32
     Author     : Alexander
 --%>
 
@@ -22,56 +22,398 @@
 
         <!-- MetisMenu CSS -->
         <link href="dist/css/metisMenu.min.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="dist/css/jformer.css" ></link>
+
+        <!-- Timeline CSS -->
+        <link href="dist/css/timeline.css" rel="stylesheet">
 
         <!-- Custom CSS -->
         <link href="dist/css/sb-admin-2.css" rel="stylesheet">
+
+        <!-- Morris Charts CSS -->
+        <link href="dist/css/morris.css" rel="stylesheet">
 
         <!-- Custom Fonts -->
         <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     </head>
 
-  <body>
+    <body>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-md-5 col-md-offset-5"> 
-                    <br>
-                    <br>
-                    <img src="Media/Imagenes/mit.gif" alt="MIT" width="200" height="200"/>                                     
+        <div id="wrapper">
+            <!-- Navigation -->
+            <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">               
+                <div class="navbar-header">                 
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>    
+                    <img src="Media/Imagenes/mit.gif" alt="MIT" width="40" height="40"/>
+                    <a class="navbar-brand" href="AdInicio.jsp"> Colombian University </a>
                 </div>
-                <div class="col-md-4 col-md-offset-4">    
-                    <div class="login-panel panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Bienvenido</h3>
-                            <p class="text-danger">${requestScope.msj != null ? requestScope.msj : ""}</p>
-                        </div>
-                        <div class="panel-body">
-                            
-                            <form role="form" method="POST" action="LoginUsuario.do">
-                                <fieldset>
-                                    <div class="form-group">
-                                        <input class="form-control" placeholder="Usuario" name="usuario" autofocus >
-                                    </div>
-                                    <div class="form-group">
-                                        <input class="form-control" placeholder="Contraseña" name="pass" type="password" value="">
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input name="recordar" type="checkbox" value="Remember Me">Recordar
-                                        </label>
-                                    </div>
-                                    <!-- Change this to a button or input when using this as a form -->
-                                    <input type="submit" value="Ingresar" class="btn btn-lg btn-default btn-block">
+                <!-- /.navbar-header -->
 
-                                </fieldset>
-                            </form>
+                <ul class="nav navbar-top-links navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-messages">
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <strong>John Smith</strong>
+                                        <span class="pull-right text-muted">
+                                            <em>Yesterday</em>
+                                        </span>
+                                    </div>
+                                    <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <strong>John Smith</strong>
+                                        <span class="pull-right text-muted">
+                                            <em>Yesterday</em>
+                                        </span>
+                                    </div>
+                                    <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <strong>John Smith</strong>
+                                        <span class="pull-right text-muted">
+                                            <em>Yesterday</em>
+                                        </span>
+                                    </div>
+                                    <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a class="text-center" href="#">
+                                    <strong>Read All Messages</strong>
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- /.dropdown-messages -->
+                    </li>
+                    <!-- /.dropdown -->
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-alerts">
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <i class="fa fa-comment fa-fw"></i> New Comment
+                                        <span class="pull-right text-muted small">4 minutes ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                                        <span class="pull-right text-muted small">12 minutes ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <i class="fa fa-envelope fa-fw"></i> Message Sent
+                                        <span class="pull-right text-muted small">4 minutes ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <i class="fa fa-tasks fa-fw"></i> New Task
+                                        <span class="pull-right text-muted small">4 minutes ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <div>
+                                        <i class="fa fa-upload fa-fw"></i> Server Rebooted
+                                        <span class="pull-right text-muted small">4 minutes ago</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a class="text-center" href="#">
+                                    <strong>See All Alerts</strong>
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- /.dropdown-alerts -->
+                    </li>
+                    <!-- /.dropdown -->
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user"> 
+                            <li><a href="Pages/index.jsp"><i class="fa fa-sign-out fa-fw"></i> Login</a>
+                            </li>
+                        </ul>
+                        <!-- /.dropdown-user -->
+                    </li>
+                    <!-- /.dropdown -->
+                </ul>
+                <!-- /.navbar-top-links -->
+
+                <div class="navbar-default sidebar" role="navigation">
+                    <div class="sidebar-nav navbar-collapse">
+                        <ul class="nav" id="side-menu">
+                            <li class="sidebar-search">
+                                <div class="input-group custom-search-form">
+                                    <input type="text" class="form-control" placeholder="Search...">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                                <!-- /input-group -->
+                            </li>
+                            <li>
+                                <a href="index.jsp"><i class="fa fa-dashboard fa-fw"></i> Inicio</a>
+                            </li>
+
+                            <li>
+                                <a href="GeneralInicio"><i class="fa fa-table fa-fw"></i> Carreras</a>
+                            </li>                           
+                        </ul>
+                    </div>
+                    <!-- /.sidebar-collapse -->
+                </div>
+                <!-- /.navbar-static-side -->
+            </nav>
+
+            <div id="page-wrapper">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header"> 
+                            <img src="  Media/Imagenes/mit.gif" alt="MIT" width="70" height="70"/>
+                            Buenvenido a ColombianUniversity
+                        </h1>
+                    </div>                     
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Kitchen Sink
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <img src="Media/Imagenes/mit/universidad MIT.jpg" height="300" width="300" alt=""/>
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>                    
+                    <div class="col-lg-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Kitchen Sink
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="table-responsive">                                    
+                                    <img src="Media/Imagenes/mit/unnamed (1).jpg" alt=""/>
+                                </div>
+                                <!-- /.table-responsive -->
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Kitchen Sink
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">                               
+                                <img src="Media/Imagenes/mit/unnamed.jpg" alt=""/>
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>                    
+                    <div class="col-lg-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Kitchen Sink
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="table-responsive">   
+                                    <img src="Media/Imagenes/mit/graduacion.jpg" alt=""/>
+                                </div>
+                                <!-- /.table-responsive -->
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Kitchen Sink
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="table-responsive"> 
+                                    <img src="Media/Imagenes/mit/fghfg.png" alt=""/>
+                                </div>
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>                    
+                    <div class="col-lg-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Kitchen Sink
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="table-responsive">                                    
+                                    <img src="Media/Imagenes/mit/_DR17728.jpg" alt=""/>
+                                </div>
+                                <!-- /.table-responsive -->
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Kitchen Sink
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="table-responsive"> 
+                                    <video width="320" height="240" controls>
+                                        <source src="https://www.youtube.com/watch?v=lvtfD_rJ2hE" type="video/mp4">
+                                    </video>
+                                </div>
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>                    
+                    <div class="col-lg-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Kitchen Sink
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="table-responsive">   
+                                    <video width="320" height="240" src="https://www.youtube.com/watch?v=jzqSXw-Oj7E">
+                                    </video>                                     
+                                </div>
+                                <!-- /.table-responsive -->
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Kitchen Sink
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+
+
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>                    
+                    <div class="col-lg-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Kitchen Sink
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="table-responsive">                                    
+
+                                </div>
+                                <!-- /.table-responsive -->
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                                <!-- Indicators -->
+                                <ol class="carousel-indicators">
+                                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                                    <li data-target="#myCarousel" data-slide-to="3"></li>
+                                </ol>
+
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner" role="listbox">
+                                    <div class="item active">
+                                        <img src="Media/Imagenes/maxresdefault.jpg" alt=""/>
+                                    </div>
+                                    <div class="item">
+                                        <img src="Media/Imagenes/ingenieria1.png" alt=""/>
+                                    </div> 
+                                    <div class="item">
+                                        <img src="Media/Imagenes/defensa1.jpg" alt=""/>                                        
+                                    </div>  
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <!-- /#page-wrapper -->
         </div>
+        <!-- /#wrapper -->
 
         <!-- jQuery -->
         <script src="dist/js/jquery.min.js"></script>
@@ -82,10 +424,13 @@
         <!-- Metis Menu Plugin JavaScript -->
         <script src="dist/js/metisMenu.min.js"></script>
 
-        <!-- Custom Theme JavaScript -->
-        <script src="dist/js/sb-admin-2.js"></script> 
+        <!-- Morris Charts JavaScript -->
+        <script src="dist/js/raphael-min.js"></script>
+        <script src="dist/js/morris.min.js"></script>
+        <script src="dist/js/morris-data.js"></script>
 
-        <script type="text/javascript" src="dist/js/jformer.js" ></script>
+        <!-- Custom Theme JavaScript -->
+        <script src="dist/js/sb-admin-2.js"></script>
 
     </body>
 

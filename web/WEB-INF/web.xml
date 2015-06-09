@@ -16,6 +16,10 @@
         <servlet-name>ESInsMateriaRegistrar</servlet-name>
         <servlet-class>co.umb.ColombianUniversity.Controller.ESInsMateriaRegistrar</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GeneralInicio</servlet-name>
+        <servlet-class>co.umb.ColombianUniversity.Controller.GeneralInicio</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>EsInicio</servlet-name>
         <url-pattern>/EsInicio.do</url-pattern>
@@ -27,6 +31,10 @@
     <servlet-mapping>
         <servlet-name>ESInsMateriaRegistrar</servlet-name>
         <url-pattern>/ESInsMateriaRegistrar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GeneralInicio</servlet-name>
+        <url-pattern>/GeneralInicio</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
